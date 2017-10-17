@@ -47,6 +47,12 @@ Item{
                 visible: cameraUI.state == "PhotoCapture"
                 source: camera
                 autoOrientation: true
+
+                // Focus by clicked screen
+                MouseArea {
+                    anchors.fill: parent;
+                    onClicked: camera.searchAndLock()
+                }
             }
 
             RoundButton {
