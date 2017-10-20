@@ -53,6 +53,19 @@ Item{
                     anchors.fill: parent;
                     onClicked: camera.searchAndLock()
                 }
+
+                Slider {
+                    id: zoomSlider
+                    anchors.bottom: parent.bottom
+                    anchors.bottomMargin: 0
+                    anchors.right: parent.right
+                    anchors.rightMargin: 0
+                    anchors.left: parent.left
+                    anchors.leftMargin: 0
+
+                    from:     1
+                    to:       camera.maximumDigitalZoom
+                }
             }
 
             RoundButton {
@@ -80,6 +93,13 @@ Item{
         Camera {
             id: camera
             captureMode: Camera.CaptureStillImage
+
+            // White Balance
+            imageProcessing.whiteBalanceMode:  CameraImageProcessing.WhiteBalanceAuto
+
+            // Zoom Control
+            digitalZoom: zoomSlider.value
+
             imageCapture {
                 onImageCaptured: {
                     photoPreview.source = preview
