@@ -5,17 +5,17 @@
 
 ## 說明
 此為 [appPailioRecogntion](https://github.com/Robin-Huang/appPailioRecogntion) 的更新版<br>
-改用Qml設計的主要原因是QtQuick中的QtMultimedia支援Android手機的相機功能<br>
+改用 Qml 設計的主要原因是 QtQuick 中的 QtMultimedia 支援 Android 手機的相機功能<br>
 
-因此這個版本有兩個功能介面<br>
-- Camera Menu<br>
+這個版本有兩個功能介面<br>
+- Camera Menu (新加入)<br>
 - Photo Gallery Menu<br>
 
 Photo Gallery Menu 與 appPailioRecogntion 版本一樣是自己設計一個圖片瀏覽器介面，但解決了讀圖檔過慢的問題。<br>
 
 -------------------------------------------
 ## 問題紀錄:
-### Q1. 圖片瀏覽器同時顯示4張相簿的圖片，但總是等全部的圖片讀取完才會一起顯示，這樣非常lag。<br>
+#### Q1. 圖片瀏覽器同時顯示4張相簿的圖片，但總是等全部的圖片讀取完才會一起顯示，這樣非常lag。<br>
 
 A: 在Image item中有個asynchronous(異步)的功能，設定為true，圖片個別讀取完就會個別顯示，使用上會畫面會比較流暢。<br>
 <pre><code>
@@ -25,9 +25,9 @@ Image{<br>
 }<br>
 </pre></code>
 
-### Q2. 直接讀原圖檔案非常大，導致讀圖的速度慢。<br>
+#### Q2. 直接讀原圖檔案非常大，導致讀圖的速度慢。<br>
 
-A: 在Image item中有個sourceSize功能，可以限制載入圖片的尺寸。<br>
+A: 在 Image item 中有個 sourceSize 功能，可以限制載入圖片的尺寸。<br>
 <pre><code>
 Image{<br>
   // ...<br>
@@ -35,11 +35,11 @@ Image{<br>
 }<br>
 </pre></code>
 
-### Q3. 如何將qml與c++結合<br>
+#### Q3. 如何將 qml 與 c++ 結合<br>
 
-A: 透過signals和slots，以下是範例
+A: 透過 signals 和 slots ，以下是範例
 
-- in cName.h<br>
+- cName.h<br>
 <pre><code>
 class cName : public QObject{
   //...
@@ -50,7 +50,7 @@ class cName : public QObject{
 }
 </pre></code>
 
-- in cName.cpp<br>
+- cName.cpp<br>
 <pre><code>
 cName::cName() : QObject(parent){
   //...
@@ -58,7 +58,7 @@ cName::cName() : QObject(parent){
 }
 </pre></code>
 
-- in main.cpp<br>
+- main.cpp<br>
 <pre><code>
 main(){
   //...
@@ -68,7 +68,7 @@ main(){
 }
 </pre></code>
 
-- in menu.qml<br>
+- menu.qml<br>
 <pre><code>
 Item{
   Connections{
