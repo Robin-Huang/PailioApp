@@ -19,7 +19,7 @@ void imageClient::start(QString path)
 {
     // ********** Set server address --------->>
     address = "163.20.133.59"; // School
-//    address = "172.20.10.3";
+    //address = "172.20.10.3";
     setHostAddressAndPort(address, 37);
 
     imPath = path;
@@ -104,7 +104,12 @@ void imageClient::recieveResult()
 {
     emit sendStateInfo("接收辨識結果!");
     if(client.bytesAvailable() > 0){
-        prosResult = client.readAll();
+        // for *char data
+        //prosResult = client.readAll();
+
+        // for byteArray
+        prosResult = QString::fromUtf8(client.readAll());
+
         emit sendResult(prosResult);
         closeConnection();
     }
