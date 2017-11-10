@@ -82,8 +82,7 @@ Item{<br>
   Button{<br>
     //按下Button後呼叫c++的函式<br>
     onClicked:{<br>
-      //呼叫c++的receive()函式<br>
-      name.recieve();
+      name.recieve(); //呼叫c++的receive()函式<br>
     }<br>
   }
 }<br>
