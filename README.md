@@ -37,53 +37,52 @@ Image{<br>
 
 ### Q3. 如何將qml與c++結合<br>
 
-A: 透過signals和slots,以下是範例
-
+A: 透過signals和slots，以下是範例
 
 - in cName.h<br>
 <pre><code>
-class cName : public QObject{<br>
-  //...<br>
-  signals:<br>
-    void send();<br>
-  public slots:<br>
-    void receive();<br>
-}<br>
+class cName : public QObject{
+  //...
+  signals:
+    void send();
+  public slots:
+    void receive();
+}
 </pre></code>
 
 - in cName.cpp<br>
 <pre><code>
-cName::cName() : QObject(parent){<br>
-  //...<br>
-  emit send(); // c++端發出signal,呼叫qml
+cName::cName() : QObject(parent){
+  //...
+  emit send(); // c++端發出send()這個signal，呼叫qml
 }
 </pre></code>
 
 - in main.cpp<br>
 <pre><code>
-main(){<br>
-  //...<br>
-  QScopePointer<cName> name(new cName);<br>
-  //...<br>
-  engine.rootContext()->setContextProperty("name", name.data());<br>
-}<br>
+main(){
+  //...
+  QScopePointer<cName> name(new cName);
+  //...
+  engine.rootContext()->setContextProperty("name", name.data());
+}
 </pre></code>
 
 - in menu.qml<br>
 <pre><code>
-Item{<br>
-  Connections{<br>
-    target: name<br>
-    //c++端send()的呼叫
-    onSend:{<br>
-      //透過send()呼叫後,欲執行的qml程式
-    }<br>
-  }<br>
-  Button{<br>
-    //按下Button後呼叫c++的函式<br>
-    onClicked:{<br>
-      name.recieve(); //呼叫c++的receive()函式<br>
-    }<br>
+Item{
+  Connections{
+    target: name
+    onSend: //c++端send()的呼叫
+    {
+      //透過send()呼叫後，欲執行的qml程式
+    }
   }
-}<br>
+  Button{
+    onClicked: //按下Button後呼叫c++的函式
+    {
+      name.recieve(); //呼叫c++的receive()函式
+    }
+  }
+}
 </pre></code>
