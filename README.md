@@ -37,7 +37,7 @@ Image{<br>
 
 ### Q3. 如何將qml與c++結合<br>
 
-A: 
+A: 透過signals和slots,以下是範例
 
 
 - in cName.h<br>
