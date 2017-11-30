@@ -7,6 +7,7 @@ import QtQuick.Controls.Styles 1.4
 
 Item {
     property alias source : preview.source
+    property string sourceFrom: ''
     signal closed
     width: 400
     height: 600
@@ -106,7 +107,11 @@ Item {
                     onClicked: {
                         stateInfo.text = "Waitting...";
                         previewArea.parent.visible = false;
-                        cameraUI.visible           = true;
+
+                        if(photoPreview.sourceFrom == 'camera')
+                            cameraUI.visible = true;
+                        else
+                            galleryUI.visible = true;
                     }
                 }
             }
@@ -192,8 +197,10 @@ Item {
                 onClicked: {
                     sendBtn.enabled = false
                     cancelBtn.enabled = false
-
-                    client.start(camera.imageCapture.capturedImagePath);
+                    if(photoPreview.sourceFrom == 'camera')
+                        client.start(camera.imageCapture.capturedImagePath);
+                    else
+                        client.start(source.toLocaleString());
                 }
             }
         }

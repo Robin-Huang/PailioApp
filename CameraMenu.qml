@@ -103,6 +103,7 @@ Item{
             imageCapture {
                 onImageCaptured: {
                     photoPreview.source = preview
+                    photoPreview.sourceFrom = 'camera'
                     photoPreview.visible = true
                     cameraUI.visible     = false
                 }

@@ -162,8 +162,9 @@ Item {
                             anchors.fill: parent
                             enabled: false
                             onClicked: {
-                                imagePreview.source = image_1.source;
-                                imagePreview.visible = true;
+                                photoPreview.source = image_1.source;
+                                photoPreview.sourceFrom = 'gallery';
+                                photoPreview.visible = true;
                                 galleryUI.visible    = false;
                             }
                         }
@@ -191,8 +192,9 @@ Item {
                             anchors.fill: parent
                             enabled: false
                             onClicked: {
-                                imagePreview.source = image_2.source;
-                                imagePreview.visible = true;
+                                photoPreview.source = image_2.source;
+                                photoPreview.sourceFrom = 'gallery';
+                                photoPreview.visible = true;
                                 galleryUI.visible    = false;
                             }
                         }
@@ -220,8 +222,9 @@ Item {
                             anchors.fill: parent
                             enabled: false
                             onClicked: {
-                                imagePreview.source = image_3.source;
-                                imagePreview.visible = true;
+                                photoPreview.source = image_3.source;
+                                photoPreview.sourceFrom = 'gallery';
+                                photoPreview.visible = true;
                                 galleryUI.visible    = false;
                             }
                         }
@@ -249,8 +252,9 @@ Item {
                             anchors.fill: parent
                             enabled: false
                             onClicked: {
-                                imagePreview.source = image_4.source;
-                                imagePreview.visible = true;
+                                photoPreview.source = image_4.source;
+                                photoPreview.sourceFrom = 'gallery';
+                                photoPreview.visible = true;
                                 galleryUI.visible    = false;
                             }
                         }
@@ -310,8 +314,8 @@ Item {
         }
     }
 
-    ImagePreview{
-        id: imagePreview
+    PhotoPreview{
+        id: photoPreview
         visible: false
         anchors.fill: parent
     }
